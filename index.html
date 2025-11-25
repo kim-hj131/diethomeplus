@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>걷기 기록 앱 (친구 기능)</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div id="login-screen">
+<h2>닉네임 로그인</h2>
+<input type="text" id="nickname" placeholder="닉네임 입력">
+<button onclick="login()">입장</button>
+<p id="login-error" class="error"></p>
+</div>
+
+<div id="main-screen" class="hidden">
+<h2 id="welcome"></h2>
+<button onclick="showInputSection()">오늘 기록 입력</button>
+<button onclick="showWeeklySection()">주간 기록 보기</button>
+<button onclick="showFriendsSection()">친구 관리</button>
+<button onclick="logout()">로그아웃</button>
+<p id="expired-message" class="error"></p>
+</div>
+
+<div id="input-section" class="hidden">
+<h3>오늘 기록</h3>
+<input type="number" id="distance" placeholder="거리 (km)">
+<input type="number" id="steps" placeholder="걸음수">
+<input type="number" id="speed" placeholder="속도 (km/h)">
+<button onclick="saveRecord()">저장</button>
+<button onclick="backToMain()">뒤로가기</button>
+<p id="save-message"></p>
+</div>
+
+<div id="weekly-section" class="hidden">
+<h3>최근 7일 기록</h3>
+<select id="chart-type" onchange="renderChart()">
+<option value="distance">거리</option>
+<option value="steps">걸음수</option>
+<option value="speed">속도</option>
+</select>
+<canvas id="weekly-chart" width="400" height="200"></canvas>
+<table id="weekly-table">
+<thead>
+<tr><th>날짜</th><th>거리(km)</th><th>걸음수</th><th>속도(km/h)</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+<p id="weekly-summary"></p>
+<button onclick="backToMain()">뒤로가기</button>
+</div>
+
+<div id="friends-section" class="hidden">
+<h3>친구 관리</h3>
+<input type="text" id="friend-name" placeholder="친구 닉네임">
+<button onclick="addFriend()">친구 추가</button>
+<ul id="friends-list"></ul>
+<button onclick="backToMain()">뒤로가기</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
